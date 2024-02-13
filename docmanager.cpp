@@ -22,8 +22,17 @@ void Docmanager::edit(const std::string& context){ //stanum enq text vory piti g
 }
 
 void Docmanager::view(){
-    std::fstream files;
-    files.open("task.txt", std::ios::in);
+    std::ifstream files;
+    files.open("task.txt");
+    if(!files.is_open()) {
+        std::cout<< "Try again";
+        exit(0);
+    }
+    std::string line;
+    while (std::getline(files, line)) {
+        std::cout << line << std::endl;
+    }
+    files.close();
 }
 
 void Docmanager::show(){
